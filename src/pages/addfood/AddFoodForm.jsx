@@ -1,9 +1,13 @@
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddFoodForm = () => {
 
+    const axiosSecure = useAxiosSecure()
     const userName = "Munna";
     const userEmail = "rhmunna19@gmail.com";
     const uid = "abchhfjieuhueghuyg6725guyugy";
+
+    const url = `/addFood?uid=${uid}`
 
     const handleAddItem = (e) => {
         e.preventDefault()
@@ -32,6 +36,9 @@ const AddFoodForm = () => {
             userEmail,
             uid
         }
+
+        axiosSecure.post(url, send)
+            .then(res => console.log(res.data))
 
         console.log(send);
     }
