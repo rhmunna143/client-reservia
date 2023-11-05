@@ -11,7 +11,9 @@ const TopFoods = () => {
                 "Explore our top-selling dishes, crafted for your delight."
             </p>
 
-            <SeparatorBlack></SeparatorBlack>
+            <div className="w-fit mx-auto">
+                <SeparatorBlack></SeparatorBlack>
+            </div>
 
 
         </div>
