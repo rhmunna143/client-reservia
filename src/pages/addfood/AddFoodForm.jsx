@@ -1,13 +1,14 @@
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import axios from "axios";
+import toast from "react-hot-toast";
+
 
 const AddFoodForm = () => {
 
-    const axiosSecure = useAxiosSecure()
     const userName = "Munna";
     const userEmail = "rhmunna19@gmail.com";
     const uid = "abchhfjieuhueghuyg6725guyugy";
 
-    const url = `/addFood?uid=${uid}`
+    const url = `http://localhost:8050/add?uid=${uid}`
 
     const handleAddItem = (e) => {
         e.preventDefault()
@@ -37,10 +38,18 @@ const AddFoodForm = () => {
             uid
         }
 
-        axiosSecure.post(url, send)
-            .then(res => console.log(res.data))
+        axios.post(url, send, {
+            withCredentials: true
+        })
+            .then(res => {
+                if(res?.data?.insertedId) {
+                    toast.success("Successfully Added a new food item!!!")
+                }
+            })
 
-        console.log(send);
+            .catch(err => {
+                toast.error(err?.message)
+            })
     }
     return (
         <div>
