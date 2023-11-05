@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import SeparatorBlack from "../../../components/separator/SeparatorBlack";
 
 
@@ -14,7 +15,16 @@ const TopFoods = () => {
                 <SeparatorBlack></SeparatorBlack>
             </div>
 
+            {/* Cards here */}
+            <div className="mt-20">
 
+            </div>
+
+            <div>
+                <Link to={"/all"}>
+                    <button className="bg-primary text-white font-medium px-4 py-2 hover:bg-black">See All Foods</button>
+                </Link>
+            </div>
         </div>
     );
 };
