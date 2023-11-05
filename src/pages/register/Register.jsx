@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/svg/undraw_mobile_payments_re_7udl.svg"
 import { useState } from "react";
+import ContinueSocial from "../login/ContinueSocial";
 
 const Register = () => {
     const [error, setPassError] = useState("")
@@ -75,13 +76,13 @@ const Register = () => {
                             {error}
                         </p>
                     }
-                    
+
                     <button type="submit" className="mt-5 bg-primary text-white px-4 py-2 w-full hover:bg-black font-medium">Register</button>
 
                     <p className="mt-5">Already have account? <Link to={"/login"}> <span className="text-primary hover:text-green-600">Login Now</span> </Link></p>
-
-
                 </form>
+
+                <ContinueSocial></ContinueSocial>
             </div>
         </div>
     );
