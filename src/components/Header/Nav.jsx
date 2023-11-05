@@ -25,19 +25,45 @@ const Nav = () => {
 
                 <div>
                     <NavLink
-                        to="/"
+                        to="/all"
                         className={({ isActive, isPending }) =>
                             isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
                         }
                     >
-                        Home
+                        All Foods
                     </NavLink>
                 </div>
 
-                <div className="user flex flex-col md:flex-row justify-between items-center">
+                <div>
+                    <NavLink
+                        to="/blogs"
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
+                        }
+                    >
+                        Blogs
+                    </NavLink>
+                </div>
+
+                <div>
+                    <NavLink
+                        to="/register"
+                        className={({ isActive, isPending }) =>
+                            isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
+                        }
+                    >
+                        Register
+                    </NavLink>
+                </div>
+
+
+
+
+
+                <div className="user flex flex-col md:flex-row justify-between items-center gap-4">
                     <details className="dropdown relative">
 
-                        <summary className="m-1 capitalize btn bg-white border-none w-12 h-12 aspect-square rounded-full px-4 md:mr-4 mb-4 md:mb-0">User</summary>
+                        <summary className="m-1 capitalize btn bg-white border-none w-12 h-12 aspect-square rounded-full px-4 mb-4 md:mb-0">User</summary>
 
                         <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-100 rounded-md absolute right-1 w-56">
                             <li>
@@ -84,6 +110,12 @@ const Nav = () => {
                         >
                             Login
                         </NavLink>
+                    </div>
+
+                    <div>
+                        <button className="bg-primary text-white hover:bg-black py-2 px-4">
+                            Logout
+                        </button>
                     </div>
                 </div>
             </div>

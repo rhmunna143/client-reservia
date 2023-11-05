@@ -9,6 +9,8 @@ import UpdateFood from "../pages/updatefood/UpdateFood";
 import Register from "../pages/register/Register";
 import Login from "../pages/login/Login";
 import AddedFood from "../pages/addedFood/AddedFood";
+import AllFood from "../pages/allfood/AllFood";
+import Blogs from "../pages/blogs/Blogs";
 
 
 const router = createBrowserRouter([
@@ -59,6 +61,16 @@ const router = createBrowserRouter([
             {
                 path: "/added",
                 element: <AddedFood></AddedFood>
+            },
+
+            {
+                path: "/all",
+                element: <AllFood></AllFood>
+            },
+
+            {
+                path: "blogs",
+                element: <Blogs></Blogs>
             }
         ]
     }
