@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: '#FA8507'
+      },
       fontFamily: {
         playBall: 'Playball, cursive'
       }
