@@ -7,7 +7,6 @@ const TopFoods = () => {
             <h6 className="text-primary font-playBall">Corporate Applications</h6>
             <h2 className="text-5xl font-bold">Top Selling Foods</h2>
             <p className="mt-4">
-
                 "Explore our top-selling dishes, crafted for your delight."
             </p>
 
