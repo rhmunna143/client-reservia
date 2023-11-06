@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import img from "../../assets/svg/undraw_enter_uhqk.svg"
 import ContinueSocial from "./ContinueSocial";
 import { useContext, useState } from "react";
@@ -53,6 +53,10 @@ const Login = () => {
 
                 <ContinueSocial></ContinueSocial>
             </div>
+
+            {
+                loggedUser && <Navigate to={path || "/"} />
+            }
         </div>
     );
 };
