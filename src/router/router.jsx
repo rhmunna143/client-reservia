@@ -11,11 +11,13 @@ import Login from "../pages/login/Login";
 import AddedFood from "../pages/addedFood/AddedFood";
 import AllFood from "../pages/allfood/AllFood";
 import Blogs from "../pages/blogs/Blogs";
+import NotFoundPage from "../pages/NotFound/NotFound";
 
 
 const router = createBrowserRouter([
     {
         path:"/",
+        errorElement: <NotFoundPage />,
         element: <Root />,
         children: [
             {
