@@ -1,9 +1,11 @@
+import AllFoodBanner from "./AllFoodBanner";
 
 
 const AllFood = () => {
     return (
         <div>
-            all food
+            <AllFoodBanner></AllFoodBanner>
+            
         </div>
     );
 };

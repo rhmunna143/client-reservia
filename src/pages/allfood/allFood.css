@@ -1,0 +1,6 @@
+.banner-bg {
+    background: url("https://i.ibb.co/F4qPz7B/rachel-park-hrlvr2-Zl-UNk-unsplash.jpg"), rgba(0, 0, 0, 0.73);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+}
