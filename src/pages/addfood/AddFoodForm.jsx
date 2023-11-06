@@ -8,7 +8,7 @@ const AddFoodForm = () => {
     const userEmail = "rhmunna19@gmail.com";
     const uid = "abchhfjieuhueghuyg6725guyugy";
 
-    const url = `http://localhost:8050/add?uid=${uid}`
+    const url = `http://localhost:8070/add?uid=${uid}`
 
     const handleAddItem = (e) => {
         e.preventDefault()
@@ -38,19 +38,34 @@ const AddFoodForm = () => {
             uid
         }
 
+        // axios.post(url, send, {
+        //     withCredentials: true
+        // })
+        //     .then(res => {
+        //         if(res?.data?.insertedId) {
+        //             toast.success("Successfully Added a new food item!!!")
+        //         }
+        //     })
+
+        //     .catch(err => {
+        //         toast.error(err?.message)
+        //         console.error(err)
+        //     })
+
+
         axios.post(url, send, {
             withCredentials: true
         })
-            .then(res => {
-                if(res?.data?.insertedId) {
-                    toast.success("Successfully Added a new food item!!!")
+            .then(response => {
+                if (response.data && response.data.insertedId) {
+                    toast.success("Successfully Added a new food item!!!");
                 }
             })
+            .catch(error => {
+                toast.error(error.message);
+                console.error(error);
+            });
 
-            .catch(err => {
-                toast.error(err?.message)
-                console.error(err)
-            })
     }
     return (
         <div>
