@@ -12,11 +12,12 @@ import AddedFood from "../pages/addedFood/AddedFood";
 import AllFood from "../pages/allfood/AllFood";
 import Blogs from "../pages/blogs/Blogs";
 import NotFoundPage from "../pages/NotFound/NotFound";
+import PrivateRoute from "../Hooks/PrivateRoute";
 
 
 const router = createBrowserRouter([
     {
-        path:"/",
+        path: "/",
         errorElement: <NotFoundPage />,
         element: <Root />,
         children: [
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
 
             {
                 path: "/add",
-                element: <AddFood></AddFood>
+                element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
             },
 
             {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
 
             {
                 path: "/ordered",
-                element: <MyOrder></MyOrder>
+                element: <PrivateRoute><MyOrder></MyOrder></PrivateRoute>
             },
 
             {
@@ -47,7 +48,7 @@ const router = createBrowserRouter([
 
             {
                 path: "/update",
-                element: <UpdateFood></UpdateFood>
+                element: <PrivateRoute><UpdateFood></UpdateFood></PrivateRoute>
             },
 
             {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
 
             {
                 path: "/added",
-                element: <AddedFood></AddedFood>
+                element: <PrivateRoute><AddedFood></AddedFood></PrivateRoute>
             },
 
             {

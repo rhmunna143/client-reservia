@@ -2,9 +2,10 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
+import LoaderMini from "../Loader/LoaderMini";
 
 const Nav = () => {
-    const { logout, user } = useContext(AllContext)
+    const { logout, user, loading } = useContext(AllContext)
 
     const handleLogout = () => {
 
@@ -79,61 +80,68 @@ const Nav = () => {
 
                 <div className="user flex flex-col md:flex-row justify-between items-center gap-4">
                     {
-                        user && <details className="dropdown relative">
+                        loading ? <LoaderMini /> :
+                            <div>
+                                {
+                                    user && <details className="dropdown relative">
 
-                            <summary className="m-1 capitalize btn bg-white border-none w-[50px] h-[50px] aspect-square rounded-full">
-                                <img className="w-[50px] h-[50px] aspect-square rounded-[100%] absolute" src={user?.photoURL} alt="" />
-                            </summary>
+                                        <summary className="m-1 capitalize btn bg-white border-none w-[50px] h-[50px] aspect-square rounded-full">
+                                            <img className="w-[50px] h-[50px] aspect-square rounded-[100%] absolute" src={user?.photoURL} alt="" />
+                                        </summary>
 
-                            <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-100 rounded-md absolute right-1 w-56">
-                                <li>
-                                    <NavLink
-                                        to="/add"
-                                        className={({ isActive, isPending }) =>
-                                            isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
-                                        }
-                                    >
-                                        Add Food
-                                    </NavLink>
-                                </li>
+                                        <ul className="p-2 shadow menu dropdown-content z-[1] bg-slate-100 rounded-md absolute right-1 w-56">
+                                            <li>
+                                                <NavLink
+                                                    to="/add"
+                                                    className={({ isActive, isPending }) =>
+                                                        isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
+                                                    }
+                                                >
+                                                    Add Food
+                                                </NavLink>
+                                            </li>
 
-                                <li>
-                                    <NavLink
-                                        to="/added"
-                                        className={({ isActive, isPending }) =>
-                                            isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
-                                        }
-                                    >
-                                        Added Food
-                                    </NavLink>
-                                </li>
+                                            <li>
+                                                <NavLink
+                                                    to="/added"
+                                                    className={({ isActive, isPending }) =>
+                                                        isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
+                                                    }
+                                                >
+                                                    Added Food
+                                                </NavLink>
+                                            </li>
 
-                                <li>
-                                    <NavLink
-                                        to="/ordered"
-                                        className={({ isActive, isPending }) =>
-                                            isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
-                                        }
-                                    >
-                                        My Order
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </details>
+                                            <li>
+                                                <NavLink
+                                                    to="/ordered"
+                                                    className={({ isActive, isPending }) =>
+                                                        isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
+                                                    }
+                                                >
+                                                    My Order
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                    </details>
 
+                                }
+                            </div>
                     }
 
                     {
-                        !user && <div>
-                            <NavLink
-                                to="/login"
-                                className={({ isActive, isPending }) =>
-                                    isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "bg-primary text-white hover:bg-black py-2 px-4"
-                                }
-                            >
-                                Login
-                            </NavLink>
-                        </div>
+                        !loading && <div>{
+                            !user && <div>
+                                <NavLink
+                                    to="/login"
+                                    className={({ isActive, isPending }) =>
+                                        isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "bg-primary text-white hover:bg-black py-2 px-4"
+                                    }
+                                >
+                                    Login
+                                </NavLink>
+                            </div>
+                        }</div>
                     }
 
                     {
