@@ -5,6 +5,7 @@ const AllFood = () => {
     return (
         <div>
             <AllFoodBanner></AllFoodBanner>
+
             
         </div>
     );

@@ -1,8 +1,13 @@
 import { Link } from "react-router-dom";
 import img from "../../assets/svg/undraw_enter_uhqk.svg"
 import ContinueSocial from "./ContinueSocial";
+import { useContext, useState } from "react";
+import { AllContext } from "../../Hooks/AllContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
+    const { login, path } = useContext(AllContext)
+    const [loggedUser, setLoggedUser] = useState(null)
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -12,10 +17,19 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log({
-            email,
-            password
-        });
+        login(email, password)
+        .then(res => {
+            const user = res.user;
+
+            setLoggedUser(user)
+
+            if(user) {
+                toast.success("Welcome " + user.displayName + "! Login success!")
+            }
+        })
+        .catch(err => {
+            toast.error(err?.message)
+        })
     }
     return (
         <div className="container mx-auto my-20 flex flex-col-reverse gap-10 lg:flex-row justify-around items-center ">

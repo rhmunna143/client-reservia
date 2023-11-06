@@ -49,6 +49,7 @@ const AddFoodForm = () => {
 
             .catch(err => {
                 toast.error(err?.message)
+                console.error(err)
             })
     }
     return (

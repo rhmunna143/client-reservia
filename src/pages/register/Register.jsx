@@ -1,10 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import img from "../../assets/svg/undraw_mobile_payments_re_7udl.svg"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ContinueSocial from "../login/ContinueSocial";
+import { AllContext } from "../../Hooks/AllContext";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../Config/firebase.config";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Register = () => {
+    const [registeredUser, setRegisteredUser] = useState(null)
     const [error, setPassError] = useState("")
+    const {register} = useContext(AllContext)
+
+    const url = "http://localhost:8050/user";
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -39,13 +48,42 @@ const Register = () => {
         // for truthy password go to register
         // register statements
 
+        register(email, password)
+        .then(res => {
+            const user = res.user;
 
-        console.log({
-            name,
-            image,
-            email,
-            password
-        });
+            updateProfile(auth.currentUser, {
+                displayName: name,
+                photoURL: image
+            })
+
+            if(user) {
+                setRegisteredUser(user)
+
+                // DB functions
+                toast.success("Registration success! Login now.")
+
+                axios.post(url, user, {
+                    withCredentials: true
+                })
+                .then(res => {
+                    // DB toast success
+
+
+                    
+                    console.log(res.data);
+                })
+                .catch(err => {
+                    toast.error(err?.message)
+                })
+
+            }
+            console.log(user);
+        })
+        .catch(err => {
+
+            console.log(err.message);
+        })
     }
 
 
@@ -59,16 +97,16 @@ const Register = () => {
                 <h2 className="my-5 text-4xl bg-primary text-white px-5 py-4 text-center">Registration</h2>
 
                 <form onSubmit={handleRegister}>
-                    <input type="text" name="name" placeholder="Name" id="name" className="px-4 py-2 border border-primary w-full" />
+                    <input type="text" name="name" required placeholder="Name" id="name" className="px-4 py-2 border border-primary w-full" />
 
                     <br /> <br />
-                    <input type="text" name="image" placeholder="DP URL" id="image" className="px-4 py-2 border border-primary w-full" />
+                    <input type="text" name="image" required placeholder="DP URL" id="image" className="px-4 py-2 border border-primary w-full" />
 
                     <br /> <br />
-                    <input type="email" name="email" placeholder="Email" id="email" className="px-4 py-2 border border-primary w-full" />
+                    <input type="email" name="email" required placeholder="Email" id="email" className="px-4 py-2 border border-primary w-full" />
 
                     <br /> <br />
-                    <input type="password" name="password" placeholder="Password" id="password" className="px-4 py-2 border border-primary w-full" />
+                    <input type="password" name="password" required placeholder="Password" id="password" className="px-4 py-2 border border-primary w-full" />
 
                     <br />
                     {
@@ -84,6 +122,10 @@ const Register = () => {
 
                 <ContinueSocial></ContinueSocial>
             </div>
+
+            {
+                registeredUser && <Navigate to={"/login"} />
+            }
         </div>
     );
 };

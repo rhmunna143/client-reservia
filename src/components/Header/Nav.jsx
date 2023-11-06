@@ -1,8 +1,23 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AllContext } from "../../Hooks/AllContext";
+import toast from "react-hot-toast";
 
 const Nav = () => {
+    const {logout, user} = useContext(AllContext)
 
+    const handleLogout = () => {
 
+        logout()
+        .then(res => {
+            console.log(res);
+            toast.success("Logout success! Login now to browse more.")
+        })
+        .catch(err => {
+            toast.error(err?.message)
+            console.log(err);
+        })
+    }
 
     return (
         <div className="container mx-auto py-6 flex flex-col md:flex-row gap-4 justify-center items-center md:justify-between px-4 lg:px-0">
@@ -113,7 +128,7 @@ const Nav = () => {
                     </div>
 
                     <div>
-                        <button className="bg-primary text-white hover:bg-black py-2 px-4">
+                        <button onClick={handleLogout} className="bg-primary text-white hover:bg-black py-2 px-4">
                             Logout
                         </button>
                     </div>
