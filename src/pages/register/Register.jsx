@@ -13,7 +13,7 @@ const Register = () => {
     const [error, setPassError] = useState("")
     const {register} = useContext(AllContext)
 
-    const url = "http://localhost:8050/user";
+    const url = "http://localhost:8070/user";
 
     const handleRegister = (e) => {
         e.preventDefault()
@@ -61,15 +61,15 @@ const Register = () => {
                 setRegisteredUser(user)
 
                 // DB functions
-                toast.success("Registration success! Login now.")
-
                 axios.post(url, user, {
                     withCredentials: true
                 })
                 .then(res => {
                     // DB toast success
 
-
+                    if (res?.data?.insertedId){
+                        toast.success("Registration success! User credentials saved. Please Login.")
+                    }
                     
                     console.log(res.data);
                 })
@@ -78,10 +78,9 @@ const Register = () => {
                 })
 
             }
-            console.log(user);
         })
         .catch(err => {
-
+            toast.error(err?.message)
             console.log(err.message);
         })
     }
