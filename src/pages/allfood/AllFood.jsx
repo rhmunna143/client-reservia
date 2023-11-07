@@ -40,7 +40,7 @@ const AllFood = () => {
                 <SeparatorBlack />
             </div>
 
-            <div className="container mx-auto my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 lg:px-0">
+            <div className="container mx-auto mb-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 lg:px-0">
                 {
                     foods?.map(food => <FoodCard key={food._id} food={food}></FoodCard>)
                 }
