@@ -41,7 +41,9 @@ const AddedFood = () => {
                     All My foods. My foods are always best.
                 </p>
 
-                <SeparatorBlack />
+                <div className="mx-auto w-fit">
+                    <SeparatorBlack />
+                </div>
             </div>
 
             <div className="table">

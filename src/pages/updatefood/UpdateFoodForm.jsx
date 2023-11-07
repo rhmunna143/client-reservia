@@ -55,7 +55,7 @@ const UpdateFoodForm = () => {
             origin
         }
 
-        if (userId != uid) {
+        if (userId !== uid) {
             return toast.error("Failed! You are not the food owner.")
         }
 

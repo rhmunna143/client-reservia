@@ -25,7 +25,7 @@ const Nav = () => {
                 <Link to={"/"}><h2 className="text-5xl font-playBall text-primary">Reservia</h2></Link>
             </div>
 
-            <div className="menu flex md:flex-row justify-between items-center gap-4">
+            <div className="menu font-medium flex md:flex-row justify-between items-center gap-4">
 
                 <div>
                     <NavLink
@@ -107,7 +107,7 @@ const Nav = () => {
                                                         isPending ? "pending" : isActive ? "bg-primary text-white py-2 px-4" : "text-primary py-2 px-4"
                                                     }
                                                 >
-                                                    Added Food
+                                                    My Added Food
                                                 </NavLink>
                                             </li>
 
