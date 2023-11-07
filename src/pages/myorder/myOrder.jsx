@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import SeparatorBlack from "../../components/separator/SeparatorBlack";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
@@ -9,17 +9,19 @@ import OrderedRow from "./OrderedRow";
 import swal from "sweetalert";
 
 const MyOrder = () => {
+    const [foods, setFoods] = useState([])
 
     const { user } = useContext(AllContext)
     const uid = user?.uid;
 
-    const { isLoading, isError, data: foods, error } = useQuery({
-        queryKey: ["foods"],
+    const { isLoading, isError, data: initFoods, error } = useQuery({
+        queryKey: ["initFoods"],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:8070/api/my-ordered/foods?uid=${user?.uid}`, {
                 withCredentials: true
             })
 
+            setFoods(res?.data)
             return res?.data
         }
     })
@@ -49,7 +51,21 @@ const MyOrder = () => {
             .then((willDelete) => {
                 if (willDelete) {
                     // delete function
-                    
+
+                    axios.delete(`http://localhost:8070/api/ordered/delete?id=${id}`, {
+                        withCredentials: true
+                    })
+                        .then(res => {
+                            if (res?.data?.deletedCount > 0) {
+
+                                const filter = foods?.filter(food => food?._id !== id);
+                                setFoods(filter)
+                            }
+                        })
+                        .catch(err => {
+                            toast.error(err.message)
+                            console.log(err.message);
+                        })
 
 
                     toast.success("The Food is deleted! Order again.")
