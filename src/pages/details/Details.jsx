@@ -8,6 +8,7 @@ import Loader from "../../components/Loader/Loader";
 
 const Details = () => {
     const [food, setFood] = useState({})
+    const [stock, setStock] = useState("")
     const [isLoading, setIsLoading] = useState(true)
 
     const { user } = useContext(AllContext)
@@ -21,10 +22,11 @@ const Details = () => {
         axios.get(`http://localhost:8070/foods/${id}`)
             .then(res => {
                 setFood(res?.data)
+                setStock(res?.data?.quantity)
                 setIsLoading(false)
             })
 
-    }, [id])
+    }, [id, stock])
 
     if (isLoading) {
         return <Loader />
@@ -47,6 +49,7 @@ const Details = () => {
 
         count++;
         quantity--;
+        setStock(quantity)
 
         axios.post(`http://localhost:8070/order?uid=${buyerId}`, {
             name,
@@ -67,8 +70,21 @@ const Details = () => {
                 if (res?.data?.insertedId) {
                     // update count and quantity here
 
-
-                    toast.success("You Ordered Successfully! See in My Order Page.")
+                    axios.patch(`http://localhost:8070/food?id=${id}`, {
+                        count,
+                        quantity
+                    }, {
+                        withCredentials: true
+                    })
+                        .then(res => {
+                            if (res?.data?.modifiedCount) {
+                                toast.success("You Ordered Successfully! See in My Order Page.")
+                            }
+                        })
+                        .catch(err => {
+                            toast.error(err.message)
+                            console.log(err.message);
+                        })
                 }
             })
             .catch(err => {
@@ -92,7 +108,7 @@ const Details = () => {
                     <p><span className="font-bold">Made by: </span> {userName}</p>
                     <p><span className="font-bold">Origin: </span> {origin}</p>
 
-                    <p><span className="text-fuchsia-500">In Stock:</span> {quantity} item/s</p>
+                    <p><span className="text-fuchsia-500">In Stock:</span> {stock} item/s</p>
 
                     <p className="max-w-lg italic">
                         {description}
