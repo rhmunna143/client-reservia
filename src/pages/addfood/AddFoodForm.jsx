@@ -1,12 +1,15 @@
 import axios from "axios";
+import { useContext } from "react";
 import toast from "react-hot-toast";
+import { AllContext } from "../../Hooks/AllContext";
 
 
 const AddFoodForm = () => {
+    const {user} = useContext(AllContext)
 
-    const userName = "Munna";
-    const userEmail = "rhmunna19@gmail.com";
-    const uid = "abchhfjieuhueghuyg6725guyugy";
+    const userName = user?.displayName;
+    const userEmail = user?.email;
+    const uid = user?.uid;
 
     const url = `http://localhost:8070/add?uid=${uid}`
 
