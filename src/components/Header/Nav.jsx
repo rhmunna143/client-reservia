@@ -10,8 +10,7 @@ const Nav = () => {
     const handleLogout = () => {
 
         logout()
-            .then(res => {
-                console.log(res);
+            .then(() => {
                 toast.success("Logout success! Login now to browse more.")
             })
             .catch(err => {

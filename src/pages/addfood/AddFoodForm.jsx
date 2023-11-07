@@ -5,7 +5,7 @@ import { AllContext } from "../../Hooks/AllContext";
 
 
 const AddFoodForm = () => {
-    const {user} = useContext(AllContext)
+    const { user } = useContext(AllContext)
 
     const userName = user?.displayName;
     const userEmail = user?.email;
@@ -41,26 +41,11 @@ const AddFoodForm = () => {
             uid
         }
 
-        // axios.post(url, send, {
-        //     withCredentials: true
-        // })
-        //     .then(res => {
-        //         if(res?.data?.insertedId) {
-        //             toast.success("Successfully Added a new food item!!!")
-        //         }
-        //     })
-
-        //     .catch(err => {
-        //         toast.error(err?.message)
-        //         console.error(err)
-        //     })
-
-
         axios.post(url, send, {
             withCredentials: true
         })
             .then(response => {
-                if (response.data && response.data.insertedId) {
+                if (response.data.insertedId) {
                     toast.success("Successfully Added a new food item!!!");
                 }
             })
@@ -68,8 +53,8 @@ const AddFoodForm = () => {
                 toast.error(error.message);
                 console.error(error);
             });
-
     }
+    
     return (
         <div>
             <form onSubmit={handleAddItem}>
@@ -86,7 +71,7 @@ const AddFoodForm = () => {
 
                 <div className="mt-5">
                     <p><span className="font-bold">Adding by:</span> {userName}</p>
-                    <p><span className="font-bold">Email:</span> {userEmail}</p>
+                    <p><span className="font-bold">Email:</span> {userEmail ? userEmail : "Not provided"}</p>
 
                     {/* Don't forget to take UID */}
 
@@ -96,7 +81,7 @@ const AddFoodForm = () => {
                 <input name="description" type="text" required placeholder="Description" className="px-4 py-2 border-primary border w-96 mt-5 h-28" />
 
                 <br />
-                <input name="origin" type="text" required placeholder="Food Origin (Country)" className="px-4 py-2 border-primary border w-96 mt-5 h-28" />
+                <input name="origin" type="text" required placeholder="Food Origin (Country)" className="px-4 py-2 border-primary border w-96 mt-5" />
 
                 <br />
                 <button type="submit" className="mt-5 bg-primary text-white px-4 py-2 font-medium hover:bg-black">Add Item</button>

@@ -17,7 +17,6 @@ const Details = () => {
 
     const { name, image, category, userName, price, origin, description, count, quantity, uid } = food;
 
-
     useEffect(() => {
         axios.get(`http://localhost:8070/foods/${id}`)
             .then(res => {
@@ -36,8 +35,6 @@ const Details = () => {
         const sellerId = uid;
         let quantity = parseInt(stock);
         let count = ordered;
-
-
 
         if (buyerId == sellerId) {
             return toast.error("You can not buy your won food!!! Try another one.")
@@ -77,7 +74,7 @@ const Details = () => {
                         withCredentials: true
                     })
                         .then(res => {
-                            if (res?.data?.modifiedCount) {
+                            if (res?.data?.modifiedCount > 0) {
                                 toast.success("You Ordered Successfully! See in My Order Page.")
                             }
                         })
@@ -91,7 +88,6 @@ const Details = () => {
                 toast.error(err?.message)
                 console.log(err.message);
             })
-
     }
 
     return (
