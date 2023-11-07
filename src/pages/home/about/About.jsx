@@ -22,7 +22,7 @@ const About = () => {
 
                     </p>
                     <SeparatorBlack></SeparatorBlack>
-                    <button className="bg-black text-white px-4 py-2 font-medium">Order Now</button>
+                    <button className="bg-primary hover:bg-black text-white px-4 py-2 font-medium">Order Now</button>
                 </div>
             </div>
         </div>

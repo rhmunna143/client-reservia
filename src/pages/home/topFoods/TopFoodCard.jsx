@@ -17,7 +17,7 @@ const TopFoodCard = ({ food }) => {
                 <p className="text-slate-500">Price: <span>$ {price}</span></p>
 
                 <Link to={`/details/${_id}`}>
-                    <button className="w-full bg-primary text-white py-2 mt-5 font-medium">See Details</button>
+                    <button className="w-full bg-primary text-white py-2 mt-5 font-medium hover:bg-black">See Details</button>
                 </Link>
             </div>
         </div>

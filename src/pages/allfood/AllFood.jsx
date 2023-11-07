@@ -13,7 +13,7 @@ const AllFood = () => {
         queryKey: ["foods"],
         queryFn: async () => {
             const res = await axios.get("http://localhost:8070/foods")
-
+            
             return res?.data;
         }
     })
