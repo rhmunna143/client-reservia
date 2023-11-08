@@ -4,6 +4,7 @@ import ContinueSocial from "./ContinueSocial";
 import { useContext, useState } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 const Login = () => {
     const { login, path } = useContext(AllContext)
@@ -18,18 +19,42 @@ const Login = () => {
         const password = form.password.value;
 
         login(email, password)
-        .then(res => {
-            const user = res.user;
+            .then(res => {
+                const user = res.user;
 
-            setLoggedUser(user)
+                setLoggedUser(user)
 
-            if(user) {
-                toast.success("Welcome " + user.displayName + "! Login success!")
-            }
-        })
-        .catch(err => {
-            toast.error(err?.message)
-        })
+                // access
+                if (user) {
+
+                    axios.post(`http://localhost:8070/jwt?uid=${user?.uid}`, user?.uid, {
+                        withCredentials: true
+                    })
+                        .then(res => {
+                            console.log(res.data);
+
+                            if (res?.data?.success) {
+
+                                toast.success("Welcome " + user.displayName + "! Login success!")
+                            }
+                        })
+
+                        .catch(err => {
+
+                            console.log(err?.message);
+                        })
+                } else {
+                    axios.post(`http://localhost:8070/logout?uid=${user?.uid}`, {
+                        withCredentials: true
+                    })
+                        .then(err => {
+                            console.log(err?.message);
+                        })
+                }
+            })
+            .catch(err => {
+                toast.error(err?.message)
+            })
     }
     return (
         <div className="container mx-auto my-20 flex flex-col-reverse gap-10 lg:flex-row justify-around items-center ">
