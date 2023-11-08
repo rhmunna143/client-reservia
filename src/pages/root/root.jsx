@@ -2,19 +2,25 @@ import { Outlet } from "react-router-dom";
 import Nav from "../../components/Header/Nav";
 import Footer from "../../components/footer/Footer";
 import { Toaster } from "react-hot-toast";
+import { HelmetProvider } from "react-helmet-async";
 
+const helmetContext = {
+    
+}
 
 const Root = () => {
     return (
-        <div className="">
-            <Nav />
-            <Outlet />
-            <Footer></Footer>
-            <Toaster
-                position="top-right"
-                reverseOrder={false}
-            />
-        </div>
+        <HelmetProvider context={helmetContext}>
+            <div className="">
+                <Nav />
+                <Outlet />
+                <Footer></Footer>
+                <Toaster
+                    position="top-right"
+                    reverseOrder={false}
+                />
+            </div>
+        </HelmetProvider>
     );
 };
 

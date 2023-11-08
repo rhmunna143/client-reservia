@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import axios from "axios";
 import AddedFoodRow from "./AddedFoodRow";
+import { Helmet } from "react-helmet-async";
 
 const AddedFood = () => {
     const { user, setErr } = useContext(AllContext)
@@ -34,6 +35,11 @@ const AddedFood = () => {
 
     return (
         <div className="container mx-auto mb-20">
+
+            <Helmet>
+                <title>Add Food | Reservia</title>
+                <link rel="canonical" href="/add" />
+            </Helmet>
 
             <div className="w-fit mx-auto text-center my-20">
                 <h6 className="text-primary text-lg  font-playBall">Corporate Application</h6>

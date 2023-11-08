@@ -5,41 +5,72 @@ import AllFoodBanner from "./AllFoodBanner";
 import axios from "axios";
 import Loader from "../../components/Loader/Loader";
 import FoodCard from "./FoodCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Pagination } from "antd";
 
 
 const AllFood = () => {
+    const [current, setCurrent] = useState(1);
+    const [loading, setLoading] = useState(true)
     const [foods, setFoods] = useState([])
+    const [totalFoods, setTotalFoods] = useState("")
+
+    const foodsPerPage = 9;
 
     const { error, isError, isLoading, data: initFoods } = useQuery({
         queryKey: ["initFoods"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:8070/foods")
+            const res = await axios.get(`http://localhost:8070/foods?page=${current}&limit=${foodsPerPage}`)
 
             setFoods(res?.data)
             return res?.data;
         }
     })
 
-    if (isLoading) {
-        return <Loader />
-    }
+    useEffect(() => {
+        setLoading(true)
 
-    if (error) {
-        console.log(error?.message);
-    }
+        axios.get("http://localhost:8070/api/foods-length", {
+            withCredentials: true
+        })
+            .then(res => {
+                setTotalFoods(res?.data?.length)
+
+                setLoading(false)
+            })
+            .catch(err => {
+                console.error(err.message);
+            })
+    }, [])
 
     const handleSearch = (search) => {
+        setLoading(true)
 
         axios.get(`http://localhost:8070/api/foods/search?search=${search}`, {
             withCredentials: true
         })
             .then(res => {
                 setFoods(res?.data)
+
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err.message);
             })
+    }
+
+    const onChange = (page) => {
+        console.log(page);
+        setCurrent(page);
+
+        axios.get(`http://localhost:8070/foods?page=${page}&limit=${foodsPerPage}`)
+            .then(res => {
+                setFoods(res?.data)
+            })
+    };
+
+    if(loading || isLoading) {
+        return <Loader />
     }
 
     return (
@@ -60,6 +91,11 @@ const AllFood = () => {
                 {
                     foods?.map(food => <FoodCard key={food._id} food={food}></FoodCard>)
                 }
+            </div>
+            <div className="container mx-auto mt-20 text-center">
+                <div className="w-fit mx-auto my-20">
+                    <Pagination pageSize={foodsPerPage} current={current} onChange={onChange} total={totalFoods} />
+                </div>
             </div>
         </div>
     );
