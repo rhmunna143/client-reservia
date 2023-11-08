@@ -4,13 +4,10 @@ import Footer from "../../components/footer/Footer";
 import { Toaster } from "react-hot-toast";
 import { HelmetProvider } from "react-helmet-async";
 
-const helmetContext = {
-    
-}
 
 const Root = () => {
     return (
-        <HelmetProvider context={helmetContext}>
+        <HelmetProvider>
             <div className="">
                 <Nav />
                 <Outlet />

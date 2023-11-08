@@ -37,8 +37,7 @@ const AddedFood = () => {
         <div className="container mx-auto mb-20">
 
             <Helmet>
-                <title>Add Food | Reservia</title>
-                <link rel="canonical" href="/add" />
+                <title>Reservia | Added Foods</title>
             </Helmet>
 
             <div className="w-fit mx-auto text-center my-20">

@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import FoodCard from "./FoodCard";
 import { useEffect, useState } from "react";
 import { Pagination } from "antd";
+import { Helmet } from "react-helmet-async";
 
 
 const AllFood = () => {
@@ -44,15 +45,12 @@ const AllFood = () => {
     }, [])
 
     const handleSearch = (search) => {
-        setLoading(true)
 
         axios.get(`https://reservia-server.vercel.app/api/foods/search?search=${search}`, {
             withCredentials: true
         })
             .then(res => {
                 setFoods(res?.data)
-
-                setLoading(false)
             })
             .catch(err => {
                 console.log(err.message);
@@ -69,12 +67,16 @@ const AllFood = () => {
             })
     };
 
-    if(loading || isLoading) {
+    if (loading || isLoading) {
         return <Loader />
     }
 
     return (
         <div>
+            <Helmet>
+                <title>Reservia | All Foods</title>
+            </Helmet>
+
             <AllFoodBanner handleSearch={handleSearch}></AllFoodBanner>
 
             <div className="w-fit mx-auto text-center my-20">

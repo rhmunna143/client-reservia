@@ -1,8 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import { Helmet } from "react-helmet";
+
 const NotFoundPage = () => {
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+            <Helmet>
+                <title>Reservia | 404! Not Found!</title>
+            </Helmet>
             <div className="mb-8">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

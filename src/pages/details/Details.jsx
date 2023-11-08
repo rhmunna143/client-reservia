@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
 import Loader from "../../components/Loader/Loader";
+import { Helmet } from "react-helmet-async";
 
 const Details = () => {
     const [food, setFood] = useState({})
@@ -96,6 +97,9 @@ const Details = () => {
 
     return (
         <div className="container mx-auto my-20">
+            <Helmet>
+                <title>Reservia | Food Details</title>
+            </Helmet>
             <div className="px-4 lg:px-0">
                 <div className="img">
                     <img src={image} alt="" className="h-[500px] mx-auto" />

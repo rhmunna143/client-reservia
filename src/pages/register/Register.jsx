@@ -7,6 +7,7 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../../Config/firebase.config";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Register = () => {
     const [registeredUser, setRegisteredUser] = useState(null)
@@ -88,6 +89,9 @@ const Register = () => {
 
     return (
         <div className="container mx-auto my-20 flex flex-col-reverse gap-10 lg:flex-row justify-around items-center ">
+            <Helmet>
+                <title>Reservia | Register</title>
+            </Helmet>
             <div className="img">
                 <img src={img} alt="" className="w-3/4" />
             </div>

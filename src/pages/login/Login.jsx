@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
     const { login, path } = useContext(AllContext)
@@ -58,6 +59,9 @@ const Login = () => {
     }
     return (
         <div className="container mx-auto my-20 flex flex-col-reverse gap-10 lg:flex-row justify-around items-center ">
+            <Helmet>
+                <title>Reservia | Login</title>
+            </Helmet>
             <div className="img">
                 <img src={img} alt="" className="w-3/4" />
             </div>

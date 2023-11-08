@@ -7,6 +7,7 @@ import Loader from "../../components/Loader/Loader";
 import axios from "axios";
 import OrderedRow from "./OrderedRow";
 import swal from "sweetalert";
+import { Helmet } from "react-helmet-async";
 
 const MyOrder = () => {
     const [foods, setFoods] = useState([])
@@ -81,6 +82,9 @@ const MyOrder = () => {
 
     return (
         <div className="container mx-auto">
+            <Helmet>
+                <title>Reservia | My Orders</title>
+            </Helmet>
             <div className="w-fit mx-auto text-center my-20">
                 <h6 className="text-primary text-lg  font-playBall">Corporate Application</h6>
                 <h2 className="text-4xl font-bold">My Ordered Foods</h2>

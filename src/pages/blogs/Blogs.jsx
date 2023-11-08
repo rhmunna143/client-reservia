@@ -1,3 +1,5 @@
+
+import { Helmet } from "react-helmet-async";
 import SeparatorBlack from "../../components/separator/SeparatorBlack";
 
 const BlogPage = () => {
@@ -31,6 +33,9 @@ const BlogPage = () => {
 
     return (
         <div className="container mx-auto my-20">
+            <Helmet>
+                <title>Reservia | Blogs</title>
+            </Helmet>
             <div className="w-fit mx-auto text-center">
                 <h6 className="text-primary font-playBall text-lg">Our Food Blogs</h6>
                 <h1 className="text-4xl font-bold mb-4">Blogs</h1>
