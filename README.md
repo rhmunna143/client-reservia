@@ -1,8 +1,16 @@
-# React + Vite
+assignment_category_0005
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Reservia (Restaurent Management Website)
 
-Currently, two official plugins are available:
+### Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Single page Application
+- Backend Server
+- Firebase User Auth
+- CRUD with MongoDB
+- JWT User authentication/authorization
+- Api loading state spinner
+- Search Engine feature with backend
+- Pagination from backend
+
+### [Live Website Link: ](https://reservia-2c6f7.web.app/) https://reservia-2c6f7.web.app/
