@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
-
 const TopFoodCard = ({ food }) => {
     const { image, name, category, price, _id } = food;
 

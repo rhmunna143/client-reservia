@@ -6,7 +6,6 @@ import axios from "axios";
 import Loader from "../../../components/Loader/Loader";
 import TopFoodCard from "./TopFoodCard";
 
-
 const TopFoods = () => {
 
     const { isLoading, data: topFoods, error } = useQuery({
