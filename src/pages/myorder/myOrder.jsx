@@ -11,7 +11,7 @@ import swal from "sweetalert";
 const MyOrder = () => {
     const [foods, setFoods] = useState([])
 
-    const { user } = useContext(AllContext)
+    const { user, setErr } = useContext(AllContext)
     const uid = user?.uid;
 
 
@@ -34,6 +34,7 @@ const MyOrder = () => {
 
     if (isError) {
         toast.error(error?.message)
+        setErr(error)
         console.log(error.message);
     }
 

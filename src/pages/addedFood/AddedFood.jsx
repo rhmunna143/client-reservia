@@ -9,7 +9,7 @@ import axios from "axios";
 import AddedFoodRow from "./AddedFoodRow";
 
 const AddedFood = () => {
-    const { user } = useContext(AllContext)
+    const { user, setErr } = useContext(AllContext)
 
     const { isLoading, isError, data: foods, error } = useQuery({
         queryKey: ["foods"],
@@ -28,6 +28,7 @@ const AddedFood = () => {
 
     if (isError) {
         toast.error(error?.message)
+        setErr(error)
         console.log(error.message);
     }
 

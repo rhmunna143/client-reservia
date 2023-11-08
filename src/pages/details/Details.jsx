@@ -11,7 +11,7 @@ const Details = () => {
     const [stock, setStock] = useState("")
     const [isLoading, setIsLoading] = useState(true)
 
-    const { user } = useContext(AllContext)
+    const { user, setErr } = useContext(AllContext)
     const { id } = useParams()
     const buyerId = user?.uid;
 
@@ -23,6 +23,9 @@ const Details = () => {
                 setFood(res?.data)
                 setStock(res?.data?.quantity)
                 setIsLoading(false)
+            })
+            .catch(err => {
+                toast.error(err.message)
             })
 
     }, [id, stock])
@@ -80,6 +83,7 @@ const Details = () => {
                         })
                         .catch(err => {
                             toast.error(err.message)
+
                             console.log(err.message);
                         })
                 }

@@ -3,6 +3,8 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../Config/firebase.config";
+import toast from "react-hot-toast";
+import { Navigate } from "react-router-dom";
 
 export const AllContext = createContext(null)
 
@@ -10,6 +12,7 @@ const ContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState(null)
     const [path, setPath] = useState(null)
+    const [err, setErr] = useState("")
 
     const googleProvider = new GoogleAuthProvider()
 
@@ -45,6 +48,17 @@ const ContextProvider = ({ children }) => {
         return () => unsubscribe()
     }, [])
 
+    useEffect(() => {
+        if (err?.response?.status === 401 || err?.response?.status === 403) {
+
+            logout()
+                .then(() => {
+                    toast.error("Access denied! Login again.")
+                    return <Navigate to="/login" />;
+                })
+        }
+    }, [err])
+
     const contextValues = {
         register,
         login,
@@ -53,7 +67,8 @@ const ContextProvider = ({ children }) => {
         setPath,
         googleSignIn,
         user,
-        logout
+        logout,
+        setErr
     }
 
     return (
