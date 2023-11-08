@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AllContext } from "../../Hooks/AllContext";
 import toast from "react-hot-toast";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 
 const ContinueSocial = () => {
@@ -15,6 +16,33 @@ const ContinueSocial = () => {
                 const user = res?.user;
                 setLoggedUser(user)
                 toast.success(user?.displayName + "! Welcome. Login success.")
+
+                // access
+                if (user) {
+                    axios.post(`http://localhost:8070/jwt?uid=${user?.uid}`, user?.uid, {
+                        withCredentials: true
+                    })
+                        .then(res => {
+                            console.log(res.data);
+
+                            if (res?.data?.success) {
+
+                                toast.success("Welcome " + user.displayName + "! Login success!")
+                            }
+                        })
+
+                        .catch(err => {
+
+                            console.log(err?.message);
+                        })
+                } else {
+                    axios.post(`http://localhost:8070/logout?uid=${user?.uid}`, {
+                        withCredentials: true
+                    })
+                        .then(err => {
+                            console.log(err?.message);
+                        })
+                }
             })
             .catch(err => {
                 toast.error(err?.message)
