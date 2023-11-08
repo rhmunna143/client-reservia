@@ -18,7 +18,7 @@ const Details = () => {
     const { name, image, category, userName, price, origin, description, count, quantity, uid } = food;
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/foods/${id}`)
+        axios.get(`https://reservia-server.vercel.app/foods/${id}`)
             .then(res => {
                 setFood(res?.data)
                 setStock(res?.data?.quantity)
@@ -51,7 +51,7 @@ const Details = () => {
         quantity--;
         setStock(quantity)
 
-        axios.post(`http://localhost:8070/order?uid=${buyerId}`, {
+        axios.post(`https://reservia-server.vercel.app/order?uid=${buyerId}`, {
             name,
             image,
             category,
@@ -70,7 +70,7 @@ const Details = () => {
                 if (res?.data?.insertedId) {
                     // update count and quantity here
 
-                    axios.patch(`http://localhost:8070/food?id=${id}`, {
+                    axios.patch(`https://reservia-server.vercel.app/food?id=${id}`, {
                         count,
                         quantity
                     }, {

@@ -19,7 +19,7 @@ const UpdateFoodForm = () => {
     const userId = user?.uid;
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/foods/${id}`)
+        axios.get(`https://reservia-server.vercel.app/foods/${id}`)
             .then(res => {
                 setFood(res?.data)
                 setIsLoading(false)
@@ -35,7 +35,7 @@ const UpdateFoodForm = () => {
         e.preventDefault()
 
         const form = e.target;
-        const url = `http://localhost:8070/api/food/update?id=${id}`;
+        const url = `https://reservia-server.vercel.app/api/food/update?id=${id}`;
 
         const name = form.name.value;
         const image = form.image.value;

@@ -19,7 +19,7 @@ const MyOrder = () => {
     const { isLoading, isError, data: initFoods, error } = useQuery({
         queryKey: ["initFoods"],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:8070/api/my-ordered/foods?uid=${user?.uid}`, {
+            const res = await axios.get(`https://reservia-server.vercel.app/api/my-ordered/foods?uid=${user?.uid}`, {
                 withCredentials: true
             })
 
@@ -55,7 +55,7 @@ const MyOrder = () => {
                 if (willDelete) {
                     // delete function
 
-                    axios.delete(`http://localhost:8070/api/ordered/delete?id=${id}`, {
+                    axios.delete(`https://reservia-server.vercel.app/api/ordered/delete?id=${id}`, {
                         withCredentials: true
                     })
                         .then(res => {

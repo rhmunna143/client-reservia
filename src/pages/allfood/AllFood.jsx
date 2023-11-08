@@ -20,7 +20,7 @@ const AllFood = () => {
     const { error, isError, isLoading, data: initFoods } = useQuery({
         queryKey: ["initFoods"],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:8070/foods?page=${current}&limit=${foodsPerPage}`)
+            const res = await axios.get(`https://reservia-server.vercel.app/foods?page=${current}&limit=${foodsPerPage}`)
 
             setFoods(res?.data)
             return res?.data;
@@ -30,7 +30,7 @@ const AllFood = () => {
     useEffect(() => {
         setLoading(true)
 
-        axios.get("http://localhost:8070/api/foods-length", {
+        axios.get("https://reservia-server.vercel.app/api/foods-length", {
             withCredentials: true
         })
             .then(res => {
@@ -46,7 +46,7 @@ const AllFood = () => {
     const handleSearch = (search) => {
         setLoading(true)
 
-        axios.get(`http://localhost:8070/api/foods/search?search=${search}`, {
+        axios.get(`https://reservia-server.vercel.app/api/foods/search?search=${search}`, {
             withCredentials: true
         })
             .then(res => {
@@ -63,7 +63,7 @@ const AllFood = () => {
         console.log(page);
         setCurrent(page);
 
-        axios.get(`http://localhost:8070/foods?page=${page}&limit=${foodsPerPage}`)
+        axios.get(`https://reservia-server.vercel.app/foods?page=${page}&limit=${foodsPerPage}`)
             .then(res => {
                 setFoods(res?.data)
             })

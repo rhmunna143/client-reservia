@@ -13,7 +13,7 @@ const Register = () => {
     const [error, setPassError] = useState("")
     const {register} = useContext(AllContext)
 
-    const url = "http://localhost:8070/user";
+    const url = "https://reservia-server.vercel.app/user";
 
     const handleRegister = (e) => {
         e.preventDefault()

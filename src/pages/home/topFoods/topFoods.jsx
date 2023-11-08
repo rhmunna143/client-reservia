@@ -12,7 +12,7 @@ const TopFoods = () => {
     const { isLoading, data: topFoods, error } = useQuery({
         queryKey: ["topFoods"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:8070/top-foods")
+            const res = await axios.get("https://reservia-server.vercel.app/top-foods")
 
             return res?.data;
         }

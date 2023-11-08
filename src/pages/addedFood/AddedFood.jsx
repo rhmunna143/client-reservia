@@ -15,7 +15,7 @@ const AddedFood = () => {
     const { isLoading, isError, data: foods, error } = useQuery({
         queryKey: ["foods"],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:8070/api/my-added/foods?uid=${user?.uid}`, {
+            const res = await axios.get(`https://reservia-server.vercel.app/api/my-added/foods?uid=${user?.uid}`, {
                 withCredentials: true
             })
 

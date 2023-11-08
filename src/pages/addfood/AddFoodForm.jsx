@@ -11,7 +11,7 @@ const AddFoodForm = () => {
     const userEmail = user?.email;
     const uid = user?.uid;
 
-    const url = `http://localhost:8070/add?uid=${uid}`
+    const url = `https://reservia-server.vercel.app/add?uid=${uid}`
 
     const handleAddItem = (e) => {
         e.preventDefault()

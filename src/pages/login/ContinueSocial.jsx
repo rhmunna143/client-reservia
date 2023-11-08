@@ -19,7 +19,7 @@ const ContinueSocial = () => {
 
                 // access
                 if (user) {
-                    axios.post(`http://localhost:8070/jwt?uid=${user?.uid}`, user?.uid, {
+                    axios.post(`https://reservia-server.vercel.app/jwt?uid=${user?.uid}`, user?.uid, {
                         withCredentials: true
                     })
                         .then(res => {
@@ -36,7 +36,7 @@ const ContinueSocial = () => {
                             console.log(err?.message);
                         })
                 } else {
-                    axios.post(`http://localhost:8070/logout?uid=${user?.uid}`, {
+                    axios.post(`https://reservia-server.vercel.app/logout?uid=${user?.uid}`, {
                         withCredentials: true
                     })
                         .then(err => {
