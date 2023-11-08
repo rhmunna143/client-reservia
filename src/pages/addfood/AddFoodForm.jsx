@@ -5,7 +5,7 @@ import { AllContext } from "../../Hooks/AllContext";
 
 
 const AddFoodForm = () => {
-    const { user } = useContext(AllContext)
+    const { user, setErr } = useContext(AllContext)
 
     const userName = user?.displayName;
     const userEmail = user?.email;
@@ -51,6 +51,7 @@ const AddFoodForm = () => {
             })
             .catch(error => {
                 toast.error(error.message);
+                setErr(error)
                 console.error(error);
             });
     }

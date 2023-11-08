@@ -10,7 +10,7 @@ const UpdateFoodForm = () => {
     const { id } = useParams()
     const [food, setFood] = useState({})
     const [isLoading, setIsLoading] = useState(true)
-    const { user } = useContext(AllContext)
+    const { user, setErr } = useContext(AllContext)
 
     const { name, image, category, price, origin, description, quantity, uid } = food;
 
@@ -68,7 +68,8 @@ const UpdateFoodForm = () => {
                 }
             })
             .catch(err => {
-                toast.err(err?.message)
+                toast.error(err?.message)
+                setErr(err)
                 console.log(err?.message);
             })
     }

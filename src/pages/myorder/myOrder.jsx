@@ -67,6 +67,7 @@ const MyOrder = () => {
                         })
                         .catch(err => {
                             toast.error(err.message)
+                            setErr(err)
                             console.log(err.message);
                         })
 
