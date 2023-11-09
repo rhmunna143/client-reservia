@@ -15,6 +15,7 @@ const About = () => {
                         duration: 2,
                         delay: 1
                     }}
+                    
                     className=" border-4 border-white relative sm:mx-auto">
                     <img src={img1} alt="" />
 
