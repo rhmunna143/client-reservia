@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import img1 from "../../../assets/img/about-img-1-1.jpg";
 import img2 from "../../../assets/img/about-img-1-2.jpg";
 import SeparatorBlack from "../../../components/separator/SeparatorBlack";
@@ -12,7 +13,7 @@ const About = () => {
                     animate={{ x: 0 }}
                     transition={{
                         duration: 2,
-                        delay: 0.5
+                        delay: 1
                     }}
                     className=" border-4 border-white relative sm:mx-auto">
                     <img src={img1} alt="" />
@@ -28,14 +29,14 @@ const About = () => {
                     animate={{ x: 0 }}
                     transition={{
                         duration: 2,
-                        delay: 0.5
+                        delay: 1
                     }}
 
                     className="w-1/2 sm:mx-auto">
                     <h6 className="text-primary font-playBall">Competently promote sticky supply chain</h6>
-                    <h2 className="text-5xl font-bold">Priately unleash & <br /> "outside the box"</h2>
+                    <h2 className="text-5xl font-bold">Privately unleash & <br /> "outside the box"</h2>
                     <p className="mt-5">
-                        Enthusiastically syndicate high-quality initiatives vis-a-vis functional internal or "organic" sources. Intrinsicly formulate intuitive benefits through client-based content. Assertively embrace intuitive quality vectors rather than holistic process improvements.
+                        Enthusiastically syndicate high-quality initiatives vis-a-vis functional internal or "organic" sources. Intrinsics formulate intuitive benefits through client-based content. Assertively embrace intuitive quality vectors rather than holistic process improvements.
 
                     </p>
                     <SeparatorBlack></SeparatorBlack>
