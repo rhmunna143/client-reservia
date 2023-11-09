@@ -15,7 +15,11 @@ const TopFoodCard = ({ food }) => {
             }}
             className="shadow-md">
             <div className="img">
-                <img src={image} alt="" className="h-56 w-full mx-auto" />
+                <motion.img
+                    whileHover={{
+                        scale: [1, 0.9]
+                    }}
+                src={image} alt="" className="h-56 w-full mx-auto" />
             </div>
 
             <div className="text p-4">
