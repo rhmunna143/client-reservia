@@ -1,6 +1,6 @@
 assignment_category_0005
 
-### Reservia (Restaurent Management Website)
+### Reservia (Restaurant Management Website)
 
 ### Features
 
@@ -12,5 +12,6 @@ assignment_category_0005
 - Api loading state spinner
 - Search Engine feature with backend
 - Pagination from backend
+- Animated with Framer Motion
 
 ### [Live Website Link: ](https://reservia-2c6f7.web.app/) https://reservia-2c6f7.web.app/

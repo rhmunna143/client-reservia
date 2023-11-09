@@ -8,7 +8,7 @@ import { HelmetProvider } from "react-helmet-async";
 const Root = () => {
     return (
         <HelmetProvider>
-            <div className="">
+            <div style={{overflowX: "hidden"}} className="">
                 <Nav />
                 <Outlet />
                 <Footer></Footer>

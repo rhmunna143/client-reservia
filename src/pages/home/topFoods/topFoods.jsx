@@ -5,6 +5,7 @@ import SeparatorBlack from "../../../components/separator/SeparatorBlack";
 import axios from "axios";
 import Loader from "../../../components/Loader/Loader";
 import TopFoodCard from "./TopFoodCard";
+import { motion } from "framer-motion";
 
 const TopFoods = () => {
 
@@ -27,7 +28,14 @@ const TopFoods = () => {
 
     return (
         <div className="container mx-auto mt-20 pt-20 text-lg px-4 lg:px-0">
-            <div className="text-center">
+            <motion.div
+                initial={{ x: -900 }}
+                animate={{ x: 0 }}
+                transition={{
+                    duration: 2,
+                    delay: 1
+                }}
+                className="text-center">
                 <h6 className="text-primary font-playBall">Corporate Applications</h6>
                 <h2 className="text-5xl font-bold">Top Selling Foods</h2>
                 <p className="mt-4">
@@ -37,7 +45,7 @@ const TopFoods = () => {
                 <div className="w-fit mx-auto">
                     <SeparatorBlack></SeparatorBlack>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Cards here */}
             <div className="my-20  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -48,7 +56,14 @@ const TopFoods = () => {
 
             <div className="w-fit mx-auto">
                 <Link to={"/all"}>
-                    <button className="bg-primary text-white font-medium px-4 py-2 hover:bg-black">See All Foods</button>
+                    <motion.button
+                        initial={{ x: 900 }}
+                        animate={{ x: [0, -900, 0] }}
+                        transition={{
+                            duration: 2,
+                            delay: 3
+                        }}
+                        className="bg-primary text-white font-medium mb-10 lg:mb-0 px-4 py-2 hover:bg-black">See All Foods</motion.button>
                 </Link>
             </div>
         </div>

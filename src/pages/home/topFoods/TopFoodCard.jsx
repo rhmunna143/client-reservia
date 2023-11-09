@@ -1,11 +1,19 @@
 /* eslint-disable react/prop-types */
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const TopFoodCard = ({ food }) => {
     const { image, name, category, price, _id } = food;
 
     return (
-        <div className="shadow-md">
+        <motion.div
+            initial={{ x: 900 }}
+            animate={{ x: 0 }}
+            transition={{
+                duration: 2,
+                delay: 1
+            }}
+            className="shadow-md">
             <div className="img">
                 <img src={image} alt="" className="h-56 w-full mx-auto" />
             </div>
@@ -19,7 +27,7 @@ const TopFoodCard = ({ food }) => {
                     <button className="w-full bg-primary text-white py-2 mt-5 font-medium hover:bg-black">See Details</button>
                 </Link>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
